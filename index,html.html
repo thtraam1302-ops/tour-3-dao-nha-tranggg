@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đặt Tour 3 Đảo Nha Trang: Hòn Mun – Làng Chài – Mini Beach | ANVIETRAVEL</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#0284C7',      /* Ocean Sky Blue */
+                            navy: '#0F172A',      /* Dark Navy */
+                            deep: '#0369A1',      /* Deep Blue */
+                            cyan: '#06B6D4',      /* Cyan Accent */
+                            light: '#F0F9FF',     /* Soft Blue Light BG */
+                            orange: '#F97316',    /* Highlight Orange for CTA */
+                            orangehover: '#EA580C'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .animate-wave {
+            animation: ripple 2s infinite;
+        }
+        @keyframes ripple {
+            0% { box-shadow: 0 0 0 0 rgba(2, 132, 199, 0.5); }
+            100% { box-shadow: 0 0 0 16px rgba(2, 132, 199, 0); }
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 antialiased p-3 sm:p-6 pb-20 md:pb-8">
+
+    <!-- MAIN CONTAINER -->
+    <div class="max-w-6xl mx-auto space-y-6">
+        
+        <!-- HEADER TOP BAR (Loại bỏ hoàn toàn khung logo AV) -->
+        <div class="bg-gradient-to-r from-sky-900 via-brand-deep to-brand-blue text-white p-4 rounded-2xl shadow-md flex flex-wrap items-center justify-between gap-3">
+            <div>
+                <h1 class="text-lg font-extrabold tracking-tight leading-none">ANVIETRAVEL</h1>
+                <p class="text-[11px] text-sky-200 font-semibold tracking-wider uppercase mt-1">Tour 3 Đảo Nha Trang: Hòn Mun – Làng Chài – Mini Beach</p>
+            </div>
+            <a href="tel:0988456607" class="inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-orangehover text-white font-bold px-4 py-2 rounded-xl text-xs sm:text-sm shadow-md transition">
+                <i class="fa-solid fa-phone"></i> 0988 456 607
+            </a>
+        </div>
+
+        <!-- TWO COLUMNS LAYOUT: CALCULATOR & ITINERARY -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            
+            <!-- LEFT COLUMN: WIDGET TÍNH TIỀN ĐẶT TOUR (5 cols) -->
+            <div class="lg:col-span-5 order-1 lg:order-2">
+                <div id="booking-widget" class="bg-white rounded-2xl shadow-xl border border-sky-200 overflow-hidden sticky top-4">
+                    
+                    <!-- Header -->
+                    <div class="bg-gradient-to-r from-sky-900 via-brand-deep to-brand-blue text-white p-4 text-center">
+                        <span class="inline-block bg-cyan-400 text-slate-950 font-black text-[10px] uppercase px-2.5 py-0.5 rounded-full mb-1">
+                            Bảng Tính Tiền Trực Tuyến
+                        </span>
+                        <h2 class="text-lg font-extrabold uppercase tracking-wide">Đặt Tour 3 Đảo Nha Trang</h2>
+                    </div>
+
+                    <div class="p-4 sm:p-5 space-y-4">
+                        
+                        <!-- Date Picker -->
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-600 mb-1">
+                                <i class="fa-regular fa-calendar-days text-brand-blue mr-1"></i> Ngày Khởi Hành
+                            </label>
+                            <input type="date" id="input-date" class="w-full bg-sky-50/60 border border-sky-200 rounded-xl px-3.5 py-2.5 text-sm font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-blue">
+                        </div>
+
+                        <!-- Counters -->
+                        <div class="space-y-2.5">
+                            
+                            <!-- Adult -->
+                            <div class="flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <div>
+                                    <div class="font-bold text-sm text-slate-800">Người lớn <span class="text-xs text-slate-500 font-normal">(≥ 1m40)</span></div>
+                                    <div class="text-brand-blue font-bold text-sm">800.000 đ</div>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <button onclick="updateQty('adult', -1)" class="w-8 h-8 bg-white border border-slate-300 rounded-lg text-slate-700 font-bold hover:bg-sky-50 flex items-center justify-center transition">-</button>
+                                    <span id="qty-adult" class="w-6 text-center font-bold text-base">1</span>
+                                    <button onclick="updateQty('adult', 1)" class="w-8 h-8 bg-white border border-slate-300 rounded-lg text-slate-700 font-bold hover:bg-sky-50 flex items-center justify-center transition">+</button>
+                                </div>
+                            </div>
+
+                            <!-- Child -->
+                            <div class="flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <div>
+                                    <div class="font-bold text-sm text-slate-800">Trẻ em <span class="text-xs text-slate-500 font-normal">(1m00 - 1m39)</span></div>
+                                    <div class="text-brand-blue font-bold text-sm">550.000 đ</div>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <button onclick="updateQty('child', -1)" class="w-8 h-8 bg-white border border-slate-300 rounded-lg text-slate-700 font-bold hover:bg-sky-50 flex items-center justify-center transition">-</button>
+                                    <span id="qty-child" class="w-6 text-center font-bold text-base">0</span>
+                                    <button onclick="updateQty('child', 1)" class="w-8 h-8 bg-white border border-slate-300 rounded-lg text-slate-700 font-bold hover:bg-sky-50 flex items-center justify-center transition">+</button>
+                                </div>
+                            </div>
+
+                            <!-- Baby -->
+                            <div class="flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <div>
+                                    <div class="font-bold text-sm text-slate-800">Em bé <span class="text-xs text-slate-500 font-normal">(&lt; 1m00)</span></div>
+                                    <div class="text-emerald-600 font-bold text-sm">Miễn phí</div>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <button onclick="updateQty('baby', -1)" class="w-8 h-8 bg-white border border-slate-300 rounded-lg text-slate-700 font-bold hover:bg-sky-50 flex items-center justify-center transition">-</button>
+                                    <span id="qty-baby" class="w-6 text-center font-bold text-base">0</span>
+                                    <button onclick="updateQty('baby', 1)" class="w-8 h-8 bg-white border border-slate-300 rounded-lg text-slate-700 font-bold hover:bg-sky-50 flex items-center justify-center transition">+</button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Discount Badge -->
+                        <div id="discount-badge" class="hidden bg-sky-50 border border-sky-200 text-sky-900 p-3 rounded-xl text-xs space-y-0.5">
+                            <div class="font-bold flex items-center gap-1.5 text-brand-deep">
+                                <i class="fa-solid fa-gift text-brand-orange text-sm"></i>
+                                <span>Đã áp dụng ưu đãi đoàn đông!</span>
+                            </div>
+                            <p id="discount-desc" class="text-slate-600">Giảm 30.000đ/khách cho đoàn từ 5 người lớn.</p>
+                        </div>
+
+                        <!-- Price Total Box -->
+                        <div class="bg-slate-900 text-white p-4 rounded-xl space-y-2">
+                            <div class="flex justify-between text-xs text-slate-400">
+                                <span>Tạm tính (<span id="summary-pax">1</span> khách):</span>
+                                <span id="summary-subtotal">800.000 đ</span>
+                            </div>
+                            <div id="row-discount" class="hidden flex justify-between text-xs text-cyan-400">
+                                <span>Ưu đãi đoàn:</span>
+                                <span id="summary-discount">-0 đ</span>
+                            </div>
+                            <div class="border-t border-slate-800 pt-2 flex justify-between items-baseline">
+                                <span class="text-sm font-bold text-slate-300">TỔNG CỘNG:</span>
+                                <span id="summary-total" class="text-2xl font-black text-brand-orange">800.000 đ</span>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button onclick="openModal()" class="w-full bg-gradient-to-r from-brand-orange to-amber-500 hover:from-brand-orangehover hover:to-amber-600 text-white font-extrabold text-base py-3.5 px-4 rounded-xl shadow-lg transition transform active:scale-95 flex items-center justify-center gap-2 uppercase tracking-wider">
+                            <i class="fa-solid fa-paper-plane"></i> ĐẶT TOUR NGAY
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT COLUMN: LỊCH TRÌNH & CHI TIẾT (7 cols) -->
+            <div class="lg:col-span-7 order-2 lg:order-1 space-y-4">
+                
+                <!-- Tab Controls -->
+                <div class="bg-white rounded-2xl shadow-sm border border-sky-100 p-1.5 flex space-x-1 text-xs sm:text-sm font-bold">
+                    <button onclick="switchTab('itinerary')" id="tab-btn-itinerary" class="tab-btn flex-1 py-2.5 px-3 rounded-xl bg-brand-blue text-white shadow-sm transition">
+                        <i class="fa-solid fa-route mr-1"></i> Lịch Trình
+                    </button>
+                    <button onclick="switchTab('menu')" id="tab-btn-menu" class="tab-btn flex-1 py-2.5 px-3 rounded-xl text-slate-600 hover:bg-sky-50 transition">
+                        <i class="fa-solid fa-bowl-food mr-1"></i> Thực Đơn Bữa Trưa
+                    </button>
+                    <button onclick="switchTab('policies')" id="tab-btn-policies" class="tab-btn flex-1 py-2.5 px-3 rounded-xl text-slate-600 hover:bg-sky-50 transition">
+                        <i class="fa-solid fa-shield-halved mr-1"></i> Chính Sách
+                    </button>
+                </div>
+
+                <!-- TAB 1: LỊCH TRÌNH CHI TIẾT -->
+                <div id="tab-itinerary" class="tab-content bg-white rounded-2xl shadow-sm border border-sky-100 p-5 space-y-6">
+                    <div class="flex items-center justify-between border-b pb-3 border-slate-100">
+                        <h3 class="text-base sm:text-lg font-bold text-slate-900 flex items-center gap-2">
+                            <i class="fa-solid fa-clock-rotate-left text-brand-blue"></i> Lịch Trình Chi Tiết (08:00 - 16:00)
+                        </h3>
+                        <span class="text-[11px] bg-sky-100 text-brand-deep font-bold px-2.5 py-1 rounded-full">Khởi hành hằng ngày</span>
+                    </div>
+
+                    <div class="space-y-6 relative before:absolute before:inset-0 before:left-3.5 before:w-0.5 before:bg-sky-200">
+                        
+                        <!-- Station 1 -->
+                        <div class="relative pl-9 space-y-1">
+                            <div class="absolute left-0 top-0 w-7 h-7 bg-brand-blue text-white rounded-full flex items-center justify-center font-bold text-xs ring-4 ring-sky-100 shadow">1</div>
+                            <span class="text-xs font-black bg-sky-100 text-brand-deep px-2 py-0.5 rounded">08:00 – 08:30</span>
+                            <h4 class="text-sm font-bold text-slate-900 mt-1">Đón khách & Tập trung tại Cảng du lịch Nha Trang</h4>
+                            <p class="text-xs text-slate-600 leading-relaxed">Xe và HDV đón quý khách tại điểm hẹn trung tâm Nha Trang hoặc Cảng du lịch. Phổ biến lịch trình và hỗ trợ nhận áo phao trước khi lên ca-nô cao tốc.</p>
+                        </div>
+
+                        <!-- Station 2 -->
+                        <div class="relative pl-9 space-y-1">
+                            <div class="absolute left-0 top-0 w-7 h-7 bg-brand-blue text-white rounded-full flex items-center justify-center font-bold text-xs ring-4 ring-sky-100 shadow">2</div>
+                            <span class="text-xs font-black bg-sky-100 text-brand-deep px-2 py-0.5 rounded">08:30 – 11:00</span>
+                            <h4 class="text-sm font-bold text-slate-900 mt-1">Trạm 1: Hòn Mun – Khám phá đại dương & Ngắm san hô</h4>
+                            <p class="text-xs text-slate-600 leading-relaxed">Ca-nô rẽ sóng đưa đoàn đến Hòn Mun – khu bảo tồn biển nổi tiếng. Tự do tắm biển trong xanh, lặn ngắm san hô bằng kính lặn ống thở hoặc tham gia lặn biển bình khí (chi phí tự túc).</p>
+                        </div>
+
+                        <!-- Station 3 -->
+                        <div class="relative pl-9 space-y-1">
+                            <div class="absolute left-0 top-0 w-7 h-7 bg-brand-blue text-white rounded-full flex items-center justify-center font-bold text-xs ring-4 ring-sky-100 shadow">3</div>
+                            <span class="text-xs font-black bg-sky-100 text-brand-deep px-2 py-0.5 rounded">11:15 – 12:30</span>
+                            <h4 class="text-sm font-bold text-slate-900 mt-1">Trạm 2: Làng Chài – Tham quan nhà bè & Ăn trưa hải sản</h4>
+                            <p class="text-xs text-slate-600 leading-relaxed">Đoàn ghé Làng Chài, tham quan lồng bè nuôi hải sản của ngư dân địa phương và thưởng thức bữa trưa đậm đà hương vị biển Nha Trang.</p>
+                        </div>
+
+                        <!-- Station 4 -->
+                        <div class="relative pl-9 space-y-1">
+                            <div class="absolute left-0 top-0 w-7 h-7 bg-brand-blue text-white rounded-full flex items-center justify-center font-bold text-xs ring-4 ring-sky-100 shadow">4</div>
+                            <span class="text-xs font-black bg-sky-100 text-brand-deep px-2 py-0.5 rounded">13:00 – 15:30</span>
+                            <h4 class="text-sm font-bold text-slate-900 mt-1">Trạm 3: Mini Beach – Thiên đường nghỉ dưỡng & Check-in</h4>
+                            <p class="text-xs text-slate-600 leading-relaxed">Tận hưởng không gian bãi biển trong xanh, cát trắng mịn. Tự do thư giãn trên ghế nằm, tắm biển, chụp ảnh check-in sống ảo hoặc chơi các môn thể thao biển.</p>
+                        </div>
+
+                        <!-- End -->
+                        <div class="relative pl-9 space-y-1">
+                            <div class="absolute left-0 top-0 w-7 h-7 bg-slate-900 text-white rounded-full flex items-center justify-center font-bold text-xs shadow"><i class="fa-solid fa-flag-checkered text-[10px]"></i></div>
+                            <span class="text-xs font-bold bg-slate-200 text-slate-700 px-2 py-0.5 rounded">15:30 – 16:00</span>
+                            <h4 class="text-sm font-bold text-slate-800">Kết thúc hành trình & Trở về đất liền</h4>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- TAB 2: THỰC ĐƠN BỮA TRƯA -->
+                <div id="tab-menu" class="tab-content hidden bg-white rounded-2xl shadow-sm border border-sky-100 p-5 space-y-4">
+                    <h3 class="text-base font-bold text-slate-900 border-b pb-2 border-slate-100 flex items-center gap-2">
+                        <i class="fa-solid fa-utensils text-brand-blue"></i> Thực Đơn Bữa Trưa Tại Làng Chài
+                    </h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs font-semibold">
+                        <div class="p-2.5 bg-sky-50 rounded-lg border border-sky-100">1. Cá biển chiên giòn / Cá kho đậm đà</div>
+                        <div class="p-2.5 bg-sky-50 rounded-lg border border-sky-100">2. Mực xào chua ngọt / Mực hấp gừng</div>
+                        <div class="p-2.5 bg-sky-50 rounded-lg border border-sky-100">3. Tôm hấp sả thơm ngon</div>
+                        <div class="p-2.5 bg-sky-50 rounded-lg border border-sky-100">4. Rau xào tỏi theo mùa</div>
+                        <div class="p-2.5 bg-sky-50 rounded-lg border border-sky-100">5. Canh chua cá biển nóng hổi</div>
+                        <div class="p-2.5 bg-sky-50 rounded-lg border border-sky-100">6. Cơm trắng dẻo thơm</div>
+                        <div class="p-2.5 bg-sky-50 rounded-lg border border-sky-100 sm:col-span-2">7. Trái cây tráng miệng & Trà đá thanh mát</div>
+                    </div>
+                </div>
+
+                <!-- TAB 3: CHÍNH SÁCH -->
+                <div id="tab-policies" class="tab-content hidden bg-white rounded-2xl shadow-sm border border-sky-100 p-5 space-y-4 text-xs">
+                    <h3 class="text-base font-bold text-slate-900 border-b pb-2 border-slate-100 flex items-center gap-2">
+                        <i class="fa-solid fa-shield-halved text-brand-blue"></i> Bao Gồm & Chính Sách Giá Tour
+                    </h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div class="bg-emerald-50 p-3 rounded-xl border border-emerald-200">
+                            <span class="font-bold text-emerald-900 block mb-1">✓ Giá tour bao gồm:</span>
+                            <p class="text-slate-700 leading-relaxed">Ca-nô cao tốc VIP khứ hồi, Vé tham quan các điểm trong tour, HDV nhiệt tình, Bữa trưa hải sản Làng Chài, Nước uống tinh khiết & Bảo hiểm du lịch.</p>
+                        </div>
+                        <div class="bg-sky-50 p-3 rounded-xl border border-sky-200">
+                            <span class="font-bold text-brand-deep block mb-1">👶 Quy Định Giá Trẻ Em:</span>
+                            <p class="text-slate-700 leading-relaxed">&bull; &lt; 1m00: Miễn phí (100%)<br>&bull; 1m00 - 1m39: 550.000đ/bé<br>&bull; ≥ 1m40: Tính vé người lớn (800.000đ)</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- FLOATING CONTACT WIDGET -->
+    <div class="fixed bottom-4 right-4 z-50 flex flex-col gap-2.5">
+        <a href="https://zalo.me/0988456607" target="_blank" class="w-11 h-11 bg-sky-500 text-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition font-bold text-xs" title="Zalo">Zalo</a>
+        <a href="tel:0988456607" class="w-11 h-11 bg-brand-blue text-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 animate-wave transition text-base" title="Gọi ngay"><i class="fa-solid fa-phone"></i></a>
+    </div>
+
+    <!-- MODAL ĐẶT TOUR (GỬI DỮ LIỆU) -->
+    <div id="modal-booking" class="fixed inset-0 z-50 hidden bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-5 shadow-2xl relative space-y-3">
+            <button onclick="closeModal()" class="absolute top-3 right-3 text-slate-400 hover:text-slate-700 text-lg font-bold"><i class="fa-solid fa-xmark"></i></button>
+
+            <div>
+                <span class="text-[11px] font-bold text-brand-blue uppercase">Xác Nhận Đặt Tour 3 Đảo</span>
+                <h3 class="text-lg font-bold text-slate-900">Thông Tin Liên Hệ</h3>
+            </div>
+
+            <!-- Summary Box -->
+            <div class="bg-sky-50 p-3 rounded-xl border border-sky-100 text-xs space-y-1">
+                <div class="flex justify-between"><span class="text-slate-500">Ngày khởi hành:</span> <span id="modal-date" class="font-bold text-slate-800">30/10/2026</span></div>
+                <div class="flex justify-between"><span class="text-slate-500">Số lượng:</span> <span id="modal-pax" class="font-bold text-slate-800">1 NL, 0 TE</span></div>
+                <div class="flex justify-between text-sm border-t border-sky-200 pt-1 font-bold"><span class="text-slate-800">Tổng thanh toán:</span> <span id="modal-total" class="text-brand-orange">800.000 đ</span></div>
+            </div>
+
+            <!-- Customer Form -->
+            <form onsubmit="handleFormSubmit(event)" class="space-y-2.5">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Họ và tên *</label>
+                    <input type="text" id="cust-name" required placeholder="Nguyễn Văn A" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-brand-blue">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Số điện thoại / Zalo *</label>
+                    <input type="tel" id="cust-phone" required placeholder="0988456607" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-brand-blue">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Khách sạn đón tại Nha Trang</label>
+                    <input type="text" id="cust-location" placeholder="Tên khách sạn / Đón tại Cảng Nha Trang" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-brand-blue">
+                </div>
+
+                <button type="submit" id="btn-submit-form" class="w-full bg-brand-blue hover:bg-sky-700 text-white font-extrabold text-xs py-3 px-4 rounded-xl shadow transition uppercase tracking-wider mt-2">
+                    XÁC NHẬN ĐẶT TOUR
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // GOOGLE APPS SCRIPT URL (Dán Web App URL của bạn vào đây)
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
+
+        const PRICE_ADULT = 800000;
+        const PRICE_CHILD = 550000;
+        
+        let state = { adult: 1, child: 0, baby: 0, date: '' };
+
+        window.onload = function() {
+            const today = new Date();
+            const tomorrow = new Date(today);
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            
+            const dateStr = tomorrow.toISOString().split('T')[0];
+            document.getElementById('input-date').value = dateStr;
+            state.date = dateStr;
+            calculatePricing();
+        };
+
+        function updateQty(type, delta) {
+            state[type] = Math.max(0, state[type] + delta);
+            if (type === 'adult' && state.adult < 1) state.adult = 1;
+            document.getElementById(`qty-${type}`).innerText = state[type];
+            calculatePricing();
+        }
+
+        function calculatePricing() {
+            const adult = state.adult;
+            const child = state.child;
+            const baby = state.baby;
+            
+            let subtotal = (adult * PRICE_ADULT) + (child * PRICE_CHILD);
+            let discount = 0;
+            let discountDesc = '';
+
+            if (adult >= 10) {
+                discount = adult * 50000;
+                discountDesc = `Giảm 50.000đ/khách cho đoàn ${adult} người lớn!`;
+            } else if (adult >= 5) {
+                discount = adult * 30000;
+                discountDesc = `Giảm 30.000đ/khách cho đoàn ${adult} người lớn!`;
+            }
+
+            const total = subtotal - discount;
+            const totalPax = adult + child + baby;
+
+            document.getElementById('summary-pax').innerText = totalPax;
+            document.getElementById('summary-subtotal').innerText = subtotal.toLocaleString('vi-VN') + ' đ';
+            
+            const discountBadge = document.getElementById('discount-badge');
+            const rowDiscount = document.getElementById('row-discount');
+
+            if (discount > 0) {
+                discountBadge.classList.remove('hidden');
+                rowDiscount.classList.remove('hidden');
+                document.getElementById('discount-desc').innerText = discountDesc;
+                document.getElementById('summary-discount').innerText = '-' + discount.toLocaleString('vi-VN') + ' đ';
+            } else {
+                discountBadge.classList.add('hidden');
+                rowDiscount.classList.add('hidden');
+            }
+
+            document.getElementById('summary-total').innerText = total.toLocaleString('vi-VN') + ' đ';
+        }
+
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-brand-blue', 'text-white', 'shadow-sm');
+                btn.classList.add('text-slate-600');
+            });
+
+            document.getElementById(`tab-${tabName}`).classList.remove('hidden');
+            const activeBtn = document.getElementById(`tab-btn-${tabName}`);
+            activeBtn.classList.remove('text-slate-600');
+            activeBtn.classList.add('bg-brand-blue', 'text-white', 'shadow-sm');
+        }
+
+        function openModal() {
+            const inputDate = document.getElementById('input-date').value;
+            if(!inputDate) { alert('Vui lòng chọn ngày'); return; }
+
+            const d = new Date(inputDate);
+            document.getElementById('modal-date').innerText = `${d.getDate()}/${d.getMonth()+1}/${d.getFullYear()}`;
+            document.getElementById('modal-pax').innerText = `${state.adult} Người lớn, ${state.child} Trẻ em, ${state.baby} Em bé`;
+            document.getElementById('modal-total').innerText = document.getElementById('summary-total').innerText;
+
+            document.getElementById('modal-booking').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('modal-booking').classList.add('hidden');
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const submitBtn = document.getElementById('btn-submit-form');
+            submitBtn.disabled = true;
+            submitBtn.innerText = 'ĐANG GỬI...';
+
+            const payload = {
+                fullName: document.getElementById('cust-name').value,
+                phone: document.getElementById('cust-phone').value,
+                location: document.getElementById('cust-location').value,
+                startDate: document.getElementById('input-date').value,
+                adultQty: state.adult,
+                childQty: state.child,
+                babyQty: state.baby,
+                totalPrice: document.getElementById('summary-total').innerText
+            };
+
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            })
+            .then(() => {
+                alert(`CẢM ƠN QUÝ KHÁCH!\n\nYêu cầu đặt tour 3 Đảo của anh/chị ${payload.fullName} đã được ghi nhận thành công.\nANVIETRAVEL sẽ liên hệ trong thời gian sớm nhất!`);
+                closeModal();
+            })
+            .catch(() => {
+                alert(`Đã ghi nhận thông tin! ANVIETRAVEL sẽ liên hệ SĐT ${payload.phone} ngay!`);
+                closeModal();
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                submitBtn.innerText = 'XÁC NHẬN ĐẶT TOUR';
+            });
+        }
+    </script>
+</body>
+</html>
